@@ -12,6 +12,8 @@
         <module>hello-netty</module>
         <module>hello-alg</module>
         <module>learning-flink</module>
+        <module>hello-spark</module>
+        <module>kafka</module>
     </modules>
 
     <properties>
