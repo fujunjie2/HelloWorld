@@ -11,10 +11,17 @@ public class FlatMapOperator {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
         DataStream<String> source = env.fromElements("Flink,Spark,Storm,Hadoop");
+
+        /*
+            通过 Collector 将映射的 0 到 多个 数据 放到 DataStream 中
+         */
         DataStream<String> flat = source.flatMap(new FlatMapFunction<String, String>() {
             @Override
-            public void flatMap(String s, Collector<String> collector) throws Exception {
-
+            public void flatMap(String s, Collector<String> collector) {
+                String[] str = s.split(",");
+                for (String each : str) {
+                    collector.collect(each);
+                }
             }
         });
 
